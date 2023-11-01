@@ -60,17 +60,17 @@
             $.each(datashow, (i, v) => {
             	if (i % 3 == 0) {
                     $main.find("div.col").eq(0).append(`
-				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@latest/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@latest/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
+				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
 				`);
                 }
             else if (i % 3 == 1) {
                     $main.find("div.col").eq(1).append(`
-				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@latest/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@latest/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
+				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
 				`);
                 }
              else {
                     $main.find("div.col").eq(2).append(`
-				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@latest/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@latest/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
+				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
 				`);
                 }
             });
@@ -132,7 +132,7 @@
             $("body").append($main.append(element()));
             event();
                 render();
-            $.getJSON("https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@latest/data/data.json", function (data){
+            $.getJSON("https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/data.json", function (data){
             	design = data;
             
             	render();
