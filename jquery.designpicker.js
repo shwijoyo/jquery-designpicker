@@ -57,22 +57,29 @@
             let datashow = data.slice(settings.pageat * 24, settings.pageat * 24 + 24);
             $main.find("div.col").empty();
             
+            let dd = []
             $.each(datashow, (i, v) => {
+            	$.each(v.design, (k, l)=>{
+            	dd.push({design: v.design[k], designdata: v.designdata[k]})
+                });
+            });
+            $.each(dd, (i, v)=>{
             	if (i % 3 == 0) {
                     $main.find("div.col").eq(0).append(`
-				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
+				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@master/data/${v.slug}/${v.design}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@master/data/${v.slug}/${v.designdata}" data-bs-dismiss="modal" loading="lazy" />
 				`);
                 }
             else if (i % 3 == 1) {
                     $main.find("div.col").eq(1).append(`
-				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
+				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@master/data/${v.slug}/${v.design}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@master/data/${v.slug}/${v.designdata}" data-bs-dismiss="modal" loading="lazy" />
 				`);
                 }
              else {
                     $main.find("div.col").eq(2).append(`
-				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/${v.design[0]}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/${v.block}/${v.slug}/data.json" data-bs-dismiss="modal" loading="lazy" />
+				<img src="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@master/data/${v.slug}/${v.design}" class="img-fluid img-thumbnail mb-3" data-design="https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@master/data/${v.slug}/${v.designdata}" data-bs-dismiss="modal" loading="lazy" />
 				`);
                 }
+                
             });
             let pagelast = (data.length + (24 - (data.length % 24))) / 24 - 1;
             $pagination.empty();
@@ -106,10 +113,10 @@
                 render();
             });
            $main.find("img.img-fluid").on("click", function () {
-           let 	url = this.getAttribute("data-design");
+           let url = this.getAttribute("data-design");
                $this.val(url);
                $.getJSON(url,  function (data){
-            	design = data.canvas[data.point].data.objects;
+            	design = data;
                 settings.onPick(design);
             });
                 
@@ -131,9 +138,14 @@
         (() => {
             $("body").append($main.append(element()));
             event();
-                render();
-            $.getJSON("https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@v0.0.2/data/data.json", function (data){
-            	design = data;
+             render();
+            $.getJSON("https://cdn.jsdelivr.net/gh/shwijoyo/surotshirt.com@master/data.json", function (data){
+            	$.each(data, (i, v)=>{
+            	      if(v.designdata.length != 0){
+            	          design.push(v);
+                       }
+                   });
+            	
             
             	render();
             });
